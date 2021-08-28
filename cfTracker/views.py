@@ -94,7 +94,7 @@ class ResultsPageView(generic.TemplateView):
                 emissions_transport += float(
                     item_data['food_emissions_transport']) * item.quantity
                 i['local'] = False
-
+            i['emissions'] = round(i['emissions'], 5)
             context['items'].append(i)
 
         local_percent = local_count/len(purchase.items.all())
@@ -111,5 +111,6 @@ class ResultsPageView(generic.TemplateView):
         context['emissions_packaging'] = emissions_packaging
         context['emissions'] = emissions_land + emissions_farm + emissions_feed + \
             emissions_processing + emissions_transport + emissions_retail + emissions_packaging
+        context['emissions'] = round(context['emissions'], 3)
 
         return context

@@ -1,28 +1,93 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/results.css' %}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+{% endblock %}
 
 {% block title %}GreenTrack | Results {% endblock %}
 {% block body %}
-    <h1>Purchase from {{ purchase.store }}</h1>
-    <b>Total Emissions: </b>{{ emissions }}kgCO₂eq
+<article id="about-results">
+    <h1>About your Results</h1>
+    <section class="info">
+        <p> hello world</p>
+    </section>
+    <span class="arrow" id="about-toggle"><i class="fas fa-angle-double-down"></i></span>
+</article>
+
+<section id="summary">
+<h1>Total CO<sub>2</sub> released</h1>
+<div class="info">
+    <span class="big-number">{{ emissions }}</span>
+    <div class="unit">
+        <span>kg of</span>
+        <span>CO<sub>2</sub></span>
+    </div>
+</div>
+</section>
+<section id="source">
+    <!-- todo: future - on click, modal of receipt (enlargen) -->
+    <img src="https://mdahlem.net/img/ozbirds/1/emu_7228_big.jpg" alt="Receipt">
+    <div class="info">
+        <div>
+            <p>{{ local_percent }}% Locally Sourced</p>
+            <div class="meter" style="width: {{ local_ratio }}%"></div>
+        </div>
+        <div>
+            <p>{{ global_percent }}% Globally Sourced</p>
+            <div class="meter" style="width: {{ global_ratio }}%"></div>
+        </div>
+    </div>
+</section>
+<section id="breakdown">
     <table>
         <thead>
         <tr>
             <th>Item</th>
-            <th>Quantity (kg)</th>
-            <th>Footprint (kgCO₂eq)</th>
+            <!-- <th>Quantity (kg)</th> -->
+            <th>Source</th>
+            <th>Footprint <br> (kgCO₂eq)</th>
         </tr>
         </thead>
         <tbody>
         {% for item in items %}
             <tr>
-                <td>{{ item.item }}</td>
-                <td>{{ item.quantity }}</td>
+                <td>{{ item.item | title }}</td>
+                <td>
+                    {% if item.local %}
+                        Local
+                    {% else %}
+                        Global 
+                    {% endif %}
+                </td>
+                <!-- <td>{{ item.quantity }}</td> -->
                 <td>{{ item.emissions }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+</section>
 
+<section id="save">
+    <a href="#" class="btn-white"><span>Save Receipt</span></a>
+</section>
+
+<script>
+    $(document).ready(() => {
+        $("#about-toggle").click(function() {
+            if ($("#about-results").hasClass("expanded")) {
+                $("#about-results").removeClass("expanded");
+                $("#about-results > section.info").slideUp()
+            } else {
+                $("#about-results").addClass("expanded");
+                $("#about-results > section.info").slideDown()
+            }
+        });
+    })
+</script>
+
+<hr>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
