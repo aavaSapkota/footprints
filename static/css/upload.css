@@ -1,9 +1,10 @@
 .container {
-    width: 85%;
-    height: 90vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     margin-top: 2rem;
+    background-repeat: no-repeat;
+    background-position: left bottom;
 }
 
 .wrapper {
@@ -11,6 +12,14 @@
     display: flex; 
     justify-content: center; 
     align-items: center;
+}
+
+.link {
+    margin-left: 2rem;
+}
+
+.upload {
+    width: 90%;
 }
 
 .upload-form {

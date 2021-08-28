@@ -14,24 +14,24 @@
 {% endblock %}
 
 {% block body %}
-<div class="container">
-    <div>
+<div class="container" style="background-image: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('{% static 'svg/footprint.svg' %}')">
+    <div class="link">
         <a href="/">&lt; Return HOME</a>
     </div>
-    <div class="wrapper"> 
-        <div class="upload"> 
-        <h2>Upload your receipt</h2>
-        <form class="upload-form" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <label class="upload-btn">
-                <span id="file-name"></span>
-                <input type="file" name="image" accept="image/*" required="" id="id_image">
-                <span>
-                    Click To Browse For Receipt Images
-                </span>
-            </label>
-            <input class="save-btn" type="submit" value="Submit">
-        </form>
+    <div class="wrapper">
+        <div class="upload">
+            <h2>Upload your receipt</h2>
+            <form class="upload-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label class="upload-btn">
+                    <span id="file-name"></span>
+                    <input type="file" name="image" accept="image/*" required="" id="id_image">
+                    <span>
+                        Click To Browse For Receipt Images
+                    </span>
+                </label>
+                <input class="save-btn" type="submit" value="Submit">
+            </form>
         </div>
     </div>
 </div>
