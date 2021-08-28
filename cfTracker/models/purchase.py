@@ -16,6 +16,7 @@ class Purchase(models.Model):
     )
     store = models.CharField(max_length=80)
     time = models.DateTimeField(auto_now=True)
+    receipt = models.ImageField(upload_to='receipts/', blank=True)
 
 
 class Item(models.Model):

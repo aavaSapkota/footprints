@@ -1,6 +1,6 @@
 from . import models
 from django.views import generic
-from .csvReader import data
+from .csvReader import data, aliases
 
 
 class HomePageView(generic.TemplateView):

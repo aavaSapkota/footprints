@@ -19,6 +19,10 @@ class PurchaseAdmin(admin.ModelAdmin):
         'store',
         'time',
     ]
+    fields = [
+        'store',
+        'receipt',
+    ]
     inlines = [
         ItemInline
     ]
