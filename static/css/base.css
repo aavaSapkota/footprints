@@ -1,0 +1,30 @@
+
+
+
+.header{
+    width:100%;
+    height:auto; 
+    background-image: url('/static/img/home-bkg.png');
+}
+
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.wave svg {
+    position: relative;
+    display: block;
+    width: calc(133% + 1.3px);
+    height: 192px;
+}
+
+.wave .shape-fill {
+    fill: #E1E9DA;
+}
