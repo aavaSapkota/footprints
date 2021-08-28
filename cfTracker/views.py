@@ -40,10 +40,7 @@ class ResultsPageView(generic.TemplateView):
         context['items'] = []
         local_count = 0
         for item in purchase.items.all():
-            i = {}
-            i['item'] = item.item
-            i['quantity'] = item.quantity
-            i['emissions'] = 0
+            i = {'item': item.item, 'quantity': item.quantity, 'emissions': 0}
 
             if item.item not in data.keys():
                 item_data = data[aliases[item.item]]
@@ -82,7 +79,7 @@ class ResultsPageView(generic.TemplateView):
                         float(item_data['distance'])
                     emissions_transport += 0.000060 * \
                         item.quantity * float(item_data['distance'])
-                    local_count +=1
+                    local_count += 1
                 else:
                     i['emissions'] += 0.000025 * item.quantity * \
                         float(item_data['distance'])
