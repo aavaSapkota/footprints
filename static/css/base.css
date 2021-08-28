@@ -1,10 +1,16 @@
 :root {
     --light-green: #E1E9DA;
-    --medium-green:#8DA97A; 
-    --green: #597447; 
+    --medium-green:#8DA97A;
+    --green: #597447;
     --dark-green: #6B805D;
     --darkest-green: #2D3A21;
     --yellow: #EECD78;
     --light-grey: #a6a4a4;
     --dark-grey: #4f4f4f;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    display: flex; 
+    justify-content: center;
 }
