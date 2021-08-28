@@ -11,6 +11,11 @@ for i, row in enumerate(reader):
         columns = row
         continue
 
+    row[0] = row[0].lower()
     data[row[0]] = {}
     for j in range(1, len(row)):
         data[row[0]][columns[j]] = row[j]
+
+del f
+del reader
+del columns
