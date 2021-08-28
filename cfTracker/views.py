@@ -36,30 +36,30 @@ class ResultsPageView(generic.TemplateView):
             i['quantity'] = item.quantity
             i['emissions'] = 0
 
-            i['emissions'] += data[item.item]['food_emissions_land_use'] * item.quantity
-            emissions_land += data[item.item]['food_emissions_land_use'] * item.quantity
-            i['emissions'] += data[item.item]['food_emissions_farm'] * item.quantity
-            emissions_farm += data[item.item]['food_emissions_farm'] * item.quantity
-            i['emissions'] += data[item.item]['food_emissions_animal_feed'] * item.quantity
-            emissions_feed += data[item.item]['food_emissions_animal_feed'] * item.quantity
-            i['emissions'] += data[item.item]['food_emissions_processing'] * item.quantity
-            emissions_processing += data[item.item]['food_emissions_processing'] * item.quantity
-            i['emissions'] += data[item.item]['food_emissions_retail'] * item.quantity
-            emissions_retail += data[item.item]['food_emissions_retail'] * item.quantity
-            i['emissions'] += data[item.item]['food_emissions_packaging'] * item.quantity
-            emissions_packaging += data[item.item]['food_emissions_packaging'] * item.quantity
+            i['emissions'] += float(data[item.item]['food_emissions_land_use']) * item.quantity
+            emissions_land += float(data[item.item]['food_emissions_land_use']) * item.quantity
+            i['emissions'] += float(data[item.item]['food_emissions_farm']) * item.quantity
+            emissions_farm += float(data[item.item]['food_emissions_farm']) * item.quantity
+            i['emissions'] += float(data[item.item]['food_emissions_animal_feed']) * item.quantity
+            emissions_feed += float(data[item.item]['food_emissions_animal_feed']) * item.quantity
+            i['emissions'] += float(data[item.item]['food_emissions_processing']) * item.quantity
+            emissions_processing += float(data[item.item]['food_emissions_processing']) * item.quantity
+            i['emissions'] += float(data[item.item]['food_emissions_retail']) * item.quantity
+            emissions_retail += float(data[item.item]['food_emissions_retail']) * item.quantity
+            i['emissions'] += float(data[item.item]['food_emissions_packaging']) * item.quantity
+            emissions_packaging += float(data[item.item]['food_emissions_packaging']) * item.quantity
 
             if len(data[item.item]['source']) > 0:
                 i['local'] = data[item.item]['is_local'] == 'true'
                 if i['local']:
-                    i['emissions'] += 0.000060 * item.quantity
-                    emissions_transport += 0.000060 * item.quantity
+                    i['emissions'] += 0.000060 * item.quantity * float(data[item.item]['distance'])
+                    emissions_transport += 0.000060 * item.quantity * float(data[item.item]['distance'])
                 else:
-                    i['emissions'] += 0.000025 * item.quantity
-                    emissions_transport += 0.000025 * item.quantity
+                    i['emissions'] += 0.000025 * item.quantity * float(data[item.item]['distance'])
+                    emissions_transport += 0.000025 * item.quantity * float(data[item.item]['distance'])
             else:
-                i['emissions'] += data[item.item]['food_emissions_transport'] * item.quantity
-                emissions_transport += data[item.item]['food_emissions_transport'] * item.quantity
+                i['emissions'] += float(data[item.item]['food_emissions_transport']) * item.quantity
+                emissions_transport += float(data[item.item]['food_emissions_transport']) * item.quantity
                 i['local'] = False
 
             context['items'].append(i)
