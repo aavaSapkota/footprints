@@ -18,7 +18,7 @@
             <img src="/static/img/Nav Icon.svg" alt="nav bar">
             <h1 style="font-weight: 300;">Green <strong>Track</strong></h1>
             <p>Walking towards a greener future...<br>one receipt at a time</p>
-            <button>Scan your Receipt</button>
+            <button ><a href="{% url 'upload' %}" style="text-decoration: none;" >Scan your Receipt</a></button>
         </div>
         
         
@@ -28,11 +28,23 @@
             </svg>
         </div>
     </div>
-    <div class="description">
-        <p>
-            Welcome to Green Track, the webapp that involves stuff and more stuff that allows you to feel guilty when you open it. 
-        </p>
+    <div class="description" id="about">
+        <div class="text">
+            <p>
+                Welcome to Green Track, the webapp that involves stuff and more stuff that allows you to feel guilty when you open it. 
+            </p>
+        </div>
+        <div class="statistic">
+            <div class="out">
+                <p class="num"><strong>29,000<br><p class="small">the amount of CO2 released in January 2021</p></strong></p>
+            </div>
+            
+            
+        </div>
+        
     </div>
+
+    
     
 </div>
 
