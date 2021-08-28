@@ -10,6 +10,7 @@ class ItemInline(admin.TabularInline):
         'quantity',
     ]
     model = models.Item
+    extra = 0
 
 
 class PurchaseAdmin(admin.ModelAdmin):
