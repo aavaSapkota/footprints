@@ -1,0 +1,50 @@
+.container {
+    width: 85%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+.wrapper {
+    flex: 1;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5rem;
+}
+
+input[type="file"] {
+    opacity: 0;
+    position: absolute;
+}
+
+.upload-btn {
+    border: 1px dashed #ccc;
+    padding: 6px 12px;
+    cursor: pointer;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.save-btn {
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
