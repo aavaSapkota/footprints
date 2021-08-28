@@ -38,6 +38,7 @@ class ResultsPageView(generic.TemplateView):
         emissions_packaging = 0
 
         context['items'] = []
+        local_count = 0
         for item in purchase.items.all():
             i = {}
             i['item'] = item.item
@@ -81,6 +82,7 @@ class ResultsPageView(generic.TemplateView):
                         float(item_data['distance'])
                     emissions_transport += 0.000060 * \
                         item.quantity * float(item_data['distance'])
+                    local_count +=1
                 else:
                     i['emissions'] += 0.000025 * item.quantity * \
                         float(item_data['distance'])
@@ -94,6 +96,11 @@ class ResultsPageView(generic.TemplateView):
                 i['local'] = False
 
             context['items'].append(i)
+
+        local_percent = local_count/len(purchase.items.all())
+        global_percent = (1-local_percent)
+        context['local_percent'] = round(local_percent*100, 2)
+        context['global_percent'] = round(global_percent*100, 2)
 
         context['emissions_land'] = emissions_land
         context['emissions_farm'] = emissions_farm
