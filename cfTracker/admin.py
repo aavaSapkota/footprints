@@ -27,4 +27,5 @@ class PurchaseAdmin(admin.ModelAdmin):
         ItemInline
     ]
 
+
 admin.site.register(models.Purchase, PurchaseAdmin)

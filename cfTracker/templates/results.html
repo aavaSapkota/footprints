@@ -32,13 +32,27 @@
             data.addColumn('string', 'Emissions Type');
             data.addColumn('number', 'Amount');
             data.addRows([
+                {% if emissions_land >= 0 %}
                 ['Land Use Emissions', {{ emissions_land }}],
+                {% endif %}
+                {% if emissions_farm >= 0 %}
                 ['Farm Emissions', {{ emissions_farm }}],
+                {% endif %}
+                {% if emissions_feed >= 0 %}
                 ['Animal Feed Emissions', {{ emissions_feed }}],
+                {% endif %}
+                {% if emissions_processing >= 0 %}
                 ['Processing Emissions', {{ emissions_processing }}],
+                {% endif %}
+                {% if emissions_transport >= 0 %}
                 ['Transport Emissions', {{ emissions_transport }}],
+                {% endif %}
+                {% if emissions_retail >= 0 %}
                 ['Retail Emissions', {{ emissions_retail }}],
+                {% endif %}
+                {% if emissions_packaging >= 0 %}
                 ['Packaging Emissions', {{ emissions_packaging }}]
+                {% endif %}
             ])
             var options = {
                 'title': 'Emissions by Category',
