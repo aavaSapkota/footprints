@@ -1,0 +1,9 @@
+asgiref==3.4.1
+colorama==0.4.4
+commonmark==0.9.1
+Django==3.2.6
+django-rest-framework==0.1.0
+djangorestframework==3.12.4
+Pygments==2.10.0
+pytz==2021.1
+sqlparse==0.4.1
