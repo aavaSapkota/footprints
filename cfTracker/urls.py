@@ -20,4 +20,6 @@ from .views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomePageView.as_view(), name='home'),
+    path('upload/' , UploadPageView.as_view(), name='upload'),
+    path('results/', ResultsPageView.as_view(), name="results"),
 ]
