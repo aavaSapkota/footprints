@@ -2,10 +2,13 @@ from django.db import models
 from django.utils import timezone
 import secrets
 
+def gen_token():
+    return secrets.token_urlsafe(10)
+
 
 class Purchase(models.Model):
     slug = models.CharField(
-        default=lambda: secrets.token_urlsafe(10),
+        default=gen_token,
         unique=True,
         editable=False,
         blank=False,
