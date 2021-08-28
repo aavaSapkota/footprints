@@ -1,14 +1,18 @@
-<h1>Purchase from {{ purchase.store }}</h1>
-<b>Total Emissions: </b>{{ emissions }}kgCO₂eq
-<table>
-    <thead>
+{% extends 'base.html' %}
+
+{% block title %}GreenTrack | Results {% endblock %}
+{% block body %}
+    <h1>Purchase from {{ purchase.store }}</h1>
+    <b>Total Emissions: </b>{{ emissions }}kgCO₂eq
+    <table>
+        <thead>
         <tr>
             <th>Item</th>
             <th>Quantity (kg)</th>
             <th>Footprint (kgCO₂eq)</th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         {% for item in items %}
             <tr>
                 <td>{{ item.item }}</td>
@@ -16,34 +20,35 @@
                 <td>{{ item.emissions }}</td>
             </tr>
         {% endfor %}
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Emissions Type');
-        data.addColumn('number', 'Amount');
-        data.addRows([
-            ['Land Use Emissions', {{ emissions_land }}],
-            ['Farm Emissions', {{ emissions_farm }}],
-            ['Animal Feed Emissions', {{ emissions_feed }}],
-            ['Processing Emissions', {{ emissions_processing }}],
-            ['Transport Emissions', {{ emissions_transport }}],
-            ['Retail Emissions', {{ emissions_retail }}],
-            ['Packaging Emissions', {{ emissions_packaging }}]
-        ])
-        var options = {
-            'title': 'Emissions by Category',
-            'width': 500,
-            'height': 400
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Emissions Type');
+            data.addColumn('number', 'Amount');
+            data.addRows([
+                ['Land Use Emissions', {{ emissions_land }}],
+                ['Farm Emissions', {{ emissions_farm }}],
+                ['Animal Feed Emissions', {{ emissions_feed }}],
+                ['Processing Emissions', {{ emissions_processing }}],
+                ['Transport Emissions', {{ emissions_transport }}],
+                ['Retail Emissions', {{ emissions_retail }}],
+                ['Packaging Emissions', {{ emissions_packaging }}]
+            ])
+            var options = {
+                'title': 'Emissions by Category',
+                'width': 500,
+                'height': 400
+            }
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
         }
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-    }
-</script>
+    </script>
 
-<div id="chart_div"></div>
+    <div id="chart_div"></div>
+{% endblock %}
