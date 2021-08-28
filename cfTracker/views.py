@@ -1,4 +1,5 @@
 from . import models
+from . import forms
 from django.views import generic
 from .csvReader import data, aliases
 
@@ -7,8 +8,15 @@ class HomePageView(generic.TemplateView):
     template_name = "index.html"
 
 
-class UploadPageView(generic.TemplateView):
+class UploadPageView(generic.edit.FormView):
     template_name = "upload.html"
+    form_class = forms.ReceiptForm
+    success_url = '/'
+
+    def form_valid(self, form):
+        # call parser with receipt path
+        # (form.cleaned_data.get("image").read())
+        return super().form_valid(form)
 
 
 class ResultsPageView(generic.TemplateView):
