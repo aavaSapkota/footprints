@@ -1,14 +1,77 @@
 from . import models
 from django.views import generic
+from .csvReader import data
+
 
 class HomePageView(generic.TemplateView):
-
     template_name = "index.html"
 
-class UploadPageView(generic.TemplateView):
 
+class UploadPageView(generic.TemplateView):
     template_name = "upload.html"
 
-class ResultsPageView(generic.TemplateView):
 
+class ResultsPageView(generic.TemplateView):
     template_name = "results.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        slug = context['slug']
+
+        purchase = models.Purchase.objects.get(slug=slug)
+        context['purchase'] = purchase
+
+        emissions_land = 0
+        emissions_farm = 0
+        emissions_feed = 0
+        emissions_processing = 0
+        emissions_transport = 0
+        emissions_retail = 0
+        emissions_packaging = 0
+
+        context['items'] = []
+        for item in purchase.items.all():
+            i = {}
+            i['item'] = item.item
+            i['quantity'] = item.quantity
+            i['emissions'] = 0
+
+            i['emissions'] += data[item.item]['food_emissions_land_use'] * item.quantity
+            emissions_land += data[item.item]['food_emissions_land_use'] * item.quantity
+            i['emissions'] += data[item.item]['food_emissions_farm'] * item.quantity
+            emissions_farm += data[item.item]['food_emissions_farm'] * item.quantity
+            i['emissions'] += data[item.item]['food_emissions_animal_feed'] * item.quantity
+            emissions_feed += data[item.item]['food_emissions_animal_feed'] * item.quantity
+            i['emissions'] += data[item.item]['food_emissions_processing'] * item.quantity
+            emissions_processing += data[item.item]['food_emissions_processing'] * item.quantity
+            i['emissions'] += data[item.item]['food_emissions_retail'] * item.quantity
+            emissions_retail += data[item.item]['food_emissions_retail'] * item.quantity
+            i['emissions'] += data[item.item]['food_emissions_packaging'] * item.quantity
+            emissions_packaging += data[item.item]['food_emissions_packaging'] * item.quantity
+
+            if len(data[item.item]['source']) > 0:
+                i['local'] = data[item.item]['is_local'] == 'true'
+                if i['local']:
+                    i['emissions'] += 0.000060 * item.quantity
+                    emissions_transport += 0.000060 * item.quantity
+                else:
+                    i['emissions'] += 0.000025 * item.quantity
+                    emissions_transport += 0.000025 * item.quantity
+            else:
+                i['emissions'] += data[item.item]['food_emissions_transport'] * item.quantity
+                emissions_transport += data[item.item]['food_emissions_transport'] * item.quantity
+                i['local'] = False
+
+            context['items'].append(i)
+
+        context['emissions_land'] = emissions_land
+        context['emissions_farm'] = emissions_farm
+        context['emissions_feed'] = emissions_feed
+        context['emissions_processing'] = emissions_processing
+        context['emissions_transport'] = emissions_transport
+        context['emissions_retail'] = emissions_retail
+        context['emissions_packaging'] = emissions_packaging
+        context['emissions'] = emissions_land + emissions_farm + emissions_feed + emissions_processing + \
+                               emissions_transport + emissions_retail + emissions_packaging
+
+        return context
