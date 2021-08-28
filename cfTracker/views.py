@@ -44,30 +44,53 @@ class ResultsPageView(generic.TemplateView):
             i['quantity'] = item.quantity
             i['emissions'] = 0
 
-            i['emissions'] += float(data[item.item]['food_emissions_land_use']) * item.quantity
-            emissions_land += float(data[item.item]['food_emissions_land_use']) * item.quantity
-            i['emissions'] += float(data[item.item]['food_emissions_farm']) * item.quantity
-            emissions_farm += float(data[item.item]['food_emissions_farm']) * item.quantity
-            i['emissions'] += float(data[item.item]['food_emissions_animal_feed']) * item.quantity
-            emissions_feed += float(data[item.item]['food_emissions_animal_feed']) * item.quantity
-            i['emissions'] += float(data[item.item]['food_emissions_processing']) * item.quantity
-            emissions_processing += float(data[item.item]['food_emissions_processing']) * item.quantity
-            i['emissions'] += float(data[item.item]['food_emissions_retail']) * item.quantity
-            emissions_retail += float(data[item.item]['food_emissions_retail']) * item.quantity
-            i['emissions'] += float(data[item.item]['food_emissions_packaging']) * item.quantity
-            emissions_packaging += float(data[item.item]['food_emissions_packaging']) * item.quantity
-
-            if len(data[item.item]['source']) > 0:
-                i['local'] = data[item.item]['is_local'] == 'true'
-                if i['local']:
-                    i['emissions'] += 0.000060 * item.quantity * float(data[item.item]['distance'])
-                    emissions_transport += 0.000060 * item.quantity * float(data[item.item]['distance'])
-                else:
-                    i['emissions'] += 0.000025 * item.quantity * float(data[item.item]['distance'])
-                    emissions_transport += 0.000025 * item.quantity * float(data[item.item]['distance'])
+            if item.item not in data.keys():
+                item_data = data[aliases[item.item]]
             else:
-                i['emissions'] += float(data[item.item]['food_emissions_transport']) * item.quantity
-                emissions_transport += float(data[item.item]['food_emissions_transport']) * item.quantity
+                item_data = data[item.item]
+
+            i['emissions'] += float(item_data['food_emissions_land_use']
+                                    ) * item.quantity
+            emissions_land += float(
+                item_data['food_emissions_land_use']) * item.quantity
+            i['emissions'] += float(item_data['food_emissions_farm']
+                                    ) * item.quantity
+            emissions_farm += float(
+                item_data['food_emissions_farm']) * item.quantity
+            i['emissions'] += float(item_data['food_emissions_animal_feed']
+                                    ) * item.quantity
+            emissions_feed += float(
+                item_data['food_emissions_animal_feed']) * item.quantity
+            i['emissions'] += float(item_data['food_emissions_processing']
+                                    ) * item.quantity
+            emissions_processing += float(
+                item_data['food_emissions_processing']) * item.quantity
+            i['emissions'] += float(item_data['food_emissions_retail']
+                                    ) * item.quantity
+            emissions_retail += float(
+                item_data['food_emissions_retail']) * item.quantity
+            i['emissions'] += float(item_data['food_emissions_packaging']
+                                    ) * item.quantity
+            emissions_packaging += float(
+                item_data['food_emissions_packaging']) * item.quantity
+
+            if len(item_data['source']) > 0:
+                i['local'] = item_data['is_local'] == 'true'
+                if i['local']:
+                    i['emissions'] += 0.000060 * item.quantity * \
+                        float(item_data['distance'])
+                    emissions_transport += 0.000060 * \
+                        item.quantity * float(item_data['distance'])
+                else:
+                    i['emissions'] += 0.000025 * item.quantity * \
+                        float(item_data['distance'])
+                    emissions_transport += 0.000025 * \
+                        item.quantity * float(item_data['distance'])
+            else:
+                i['emissions'] += float(
+                    item_data['food_emissions_transport']) * item.quantity
+                emissions_transport += float(
+                    item_data['food_emissions_transport']) * item.quantity
                 i['local'] = False
 
             context['items'].append(i)
@@ -79,7 +102,7 @@ class ResultsPageView(generic.TemplateView):
         context['emissions_transport'] = emissions_transport
         context['emissions_retail'] = emissions_retail
         context['emissions_packaging'] = emissions_packaging
-        context['emissions'] = emissions_land + emissions_farm + emissions_feed + emissions_processing + \
-                               emissions_transport + emissions_retail + emissions_packaging
+        context['emissions'] = emissions_land + emissions_farm + emissions_feed + \
+            emissions_processing + emissions_transport + emissions_retail + emissions_packaging
 
         return context
