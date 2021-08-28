@@ -1,18 +1,15 @@
 import csv
 from google.cloud import vision
 import io
-
-FOODS = set()
-
-with open('../data/aliases.csv', mode='r') as f:
-    csvFile = csv.reader(f)
-    for lines in csvFile:
-        FOODS.update(lines)
+from . import csvReader
 
 def is_registered(name):
-    return name in FOODS
+    return name in csvReader.aliases.keys() or name in csvReader.data.keys()
 
-#FOODS.add("OCN SPRY JCE")
+def is_num(n):
+    try: float(n)
+    except: return False
+    return True
 
 def parse_receipt(img_bytes):
     client = vision.ImageAnnotatorClient()
@@ -65,23 +62,11 @@ def parse_receipt(img_bytes):
                 phrase += " " + parsed_text[j]["text"]
                 parsed_text[j]["taken"] = True
             else: break
-        phrase = phrase.strip()
+        phrase = phrase.strip().lower()
         if is_registered(phrase):
             if phrase in products:
                 products[phrase] += 1
             else:
                 products[phrase] = 1
 
-    return {
-        "items": products,
-        "store": store_name
-    }
-
-
-'''
-items: {
-    "name": quantity,
-    "thing": 1,
-    "ting": 2,
-}
-'''
+    return (store_name, products)
