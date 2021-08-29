@@ -3,10 +3,15 @@
     display: flex;
     flex-direction: column;
     margin-top: 2rem;
+    padding: 0 1.5rem;
+    max-width: 800px;
+    margin-right: auto;
+    margin-left: auto;
+}
+body {
     background-repeat: no-repeat;
     background-position: left bottom;
 }
-
 .wrapper {
     flex: 1;
     display: flex; 
@@ -15,7 +20,7 @@
 }
 
 .link {
-    margin-left: 2rem;
+    margin-left: 1.5rem;
 }
 
 .upload {
@@ -36,13 +41,22 @@ input[type="file"] {
 .upload-btn {
     border: 2px dashed var(--light-grey);
     background-color: rgba(255,255,255,0.5);
-    padding: 6px 12px;
+    padding: 1.5rem 1rem;
     cursor: pointer;
-    height: 100px;
+    min-height: 100px;
     display: flex;
     flex-direction: column;
     text-align: center;
     justify-content: center;
+}
+.upload-btn:hover {
+  background-color: rgba(225, 233, 218,0.5);
+}
+.upload-btn:hover #file-preview {
+    opacity: 0.7;
+}
+.upload-btn, .upload-btn:hover {
+  transition: background-color 0.3s ease-in-out;
 }
 
 .save-btn {
@@ -61,8 +75,36 @@ input[type="file"] {
 
 a {
     text-decoration: none;
+    color: var(--grey-green);
+    transition: color 0.2s ease-in-out;
 }
 
 a:hover {
-    text-decoration: underline;
+    /*text-decoration: underline;*/
+    color: var(--green);
+}
+
+body {
+  margin: 0;
+}
+html {
+  overflow: hidden;
+}
+* {
+  box-sizing: border-box;
+}
+
+#file-preview {
+margin-bottom: 1rem;
+color: var(--medium-green);
+opacity: 0.5;
+  animation: shake 0.4s;
+  animation-iteration-count: 2;
+  transition: opacity 0.2s ease-in-out;
+}
+
+@keyframes shake {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2) translateY(-2px); }
+  100% { transform: scale(1); }
 }
