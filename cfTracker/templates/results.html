@@ -111,7 +111,7 @@
 </section>
 
 <section id="emission-types">
-    <p>Your groceries' emissions by category:</p>
+    <p>Your groceries' emissions by category (units: kg CO₂ / kg produce):</p>
     <div id="chart_div"></div>
 </section>
 
@@ -231,11 +231,19 @@ function copy(id, btn) {
         ]);
         var options = {
             // 'title': 'Emissions by Category',
-            // 'width': 500,    
+            'width': '600',
             'colors': ["#8DA97A", "#597447", "#6B805D", "#2D3A21","#31432B","#9DC974","#729361","#B6E6A4"],
             'height': 400,
             'fontName': "Open Sans",
-            'fontSize': 16
+            'fontSize': 16,
+            // 'legend' : {
+            //     'position': 'bottom'
+            // }
+
+    chartArea: {
+      // leave room for y-axis labels
+      width: '94%'
+    }
         };
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
         chart.draw(data, options);
