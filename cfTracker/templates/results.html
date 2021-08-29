@@ -34,8 +34,7 @@
     </div>
 </section>
 <section id="source">
-    <!-- todo: future - on click, modal of receipt (enlargen) -->
-    <img class="pointer" src="{{ purchase.receipt.url }}" alt="Receipt" onclick="showModal('receipt')">
+    <img class="pointer" src="{{ purchase.receipt.url }}" alt="Receipt" onmouseup="showModal('receipt')">
     <div class="modal" id="receipt">
         <div class="popup">
             <span class="close"><i class="fas fa-times"></i></span>
@@ -174,7 +173,6 @@ window.addEventListener("load",() => {
 
 function showModal(id) {
     $(`#${id}`).css("display","flex");
-    // dirty
     setTimeout(() => {
         window.addEventListener("click",hideModalIfClickOutside);
         window.addEventListener("touchend",hideModalIfClickOutside);
@@ -187,7 +185,7 @@ function copy(id, btn) {
     inpt.setSelectionRange(0, 99999);
     if (document.execCommand("copy")) {
         btn.textContent = "Copied!"
-        setTimeout(() => {btn.textContent = "Copy";}, 700);
+        setTimeout(() => {btn.textContent = "Copy";}, 1000);
     };
 }
 </script>
