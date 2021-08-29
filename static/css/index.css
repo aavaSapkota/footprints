@@ -32,10 +32,6 @@
     align-items: center;
 }
 
-.description button{
-    align-self: center;
-}
-
 .pitch {
     display: flex; 
     justify-content: center;
@@ -83,9 +79,21 @@
     width: 90%;
 }
 
+.research {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+}
+
+.research button {
+    margin: 0;
+    border-color: black; 
+    background: white;
+}
+
 h1 {
     color: white;
-    font-size: 5rem;
+    font-size: 4rem;
     text-align: left;
     margin: 2rem 0;
     font-weight: 200;

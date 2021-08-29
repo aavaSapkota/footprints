@@ -14,7 +14,7 @@
         <div class="header-content">
             <h1>Food <strong>Prints</strong></h1>
             <p>Walking towards a greener future...<br>one receipt at a time</p>
-            <a href="{% url 'upload' %}"><button class="button" type="button">Scan your Receipt</button></a>
+            <a href="{% url 'upload' %}"><button type="button">Scan your Receipt</button></a>
         </div>
     </div>
     <div class="description">
@@ -39,11 +39,17 @@
                 <h2>Receipts</h2>
                 <p class="text" style="color: white;" >Here at Green Track, we provide a quick and easy way for you to check your climate footprint on a day to day basis. By simply uploading pictures of your receipts, we relay to you valuable insights about your purchased items and how much CO2 was emitted to get them to you.</p>
                 <div>
-                <a href="{% url 'upload' %}" style="text-decoration: none;" ><button class="button" type="button">Scan your Receipt</button></a>
+                <a href="{% url 'upload' %}" style="text-decoration: none;" ><button type="button">Scan your Receipt</button></a>
                 </div>
                 <div class="icon">
                     <img src="/static/img/receipt.svg" alt="">
                 </div>
+            </div>
+            <div class="research"> 
+                <h3>Want to learn more about the agricultural crisis?</h3>
+                <a
+                        href="https://docs.google.com/document/d/1Bu0dem3FKslSu5__aLmE86n53v9rijkNEV2FnfrO8K0/edit?usp=sharing"><button
+                        class="research-btn" type="button">Check out our Research Docs</button></a>
             </div>
         </div>
     </div>
