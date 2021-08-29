@@ -52,6 +52,8 @@ body {
   margin-bottom: 0.3rem;
   margin-top: 0;
   color: var(--dark-grey);
+  font-size: 1.2rem;
+  text-align: center;
 }
 #summary .info {
   display: inline-flex;
@@ -59,25 +61,47 @@ body {
 }
 #summary .info .big-number {
   font-size: 5rem;
+  font-weight: bold;
   line-height: 1;
   margin: 0 0.7rem;
   color: var(--green);
 }
 #summary .info .unit {
   text-align: center;
+  font-size: 1.4rem;
+}
+#summary .info div {
+  margin-bottom: 0;
+}
+#summary > img {
+ width: 7rem;
+ margin-bottom: 1.25rem;
+}
+@media screen and (max-width: 760px) {
+  #summary > img {
+    width: 5rem;
+  }
 }
 
 #source {
   background-color: var(--green);
+  justify-content: center;
 }
-#source img {
+#source > img {
   max-width: 40%;
   border: 10px solid white;
+  max-width: min(40%,350px);
 }
 #source .info {
   flex-grow: 1;
   margin-left: 1rem;
   color: white;
+  max-width: 500px;
+}
+@media screen and (min-width: 1000px) {
+  #source .info {
+    margin-left: 3rem;
+  }
 }
 #source .info > :first-child {
   margin-bottom: 1.5rem;
@@ -85,17 +109,28 @@ body {
 #source .info .meter {
   width: 100%;
   background-color: var(--medium-green);
-  height: 7px;
+  height: 0.75rem;
   border-radius: 5px;
 }
 #source .info p {
   margin-bottom: 0.7rem;
+  font-size: 1.2rem;
 }
 
+#breakdown, #save {
+  display: revert;
+}
+#breakdown > p, #save > p {
+ text-align: center;
+ font-size: 1.3rem;
+ margin-bottom: 2rem;
+}
 #breakdown table {
   width: 100%;
   border-collapse: collapse;
   border-style: hidden;
+  max-width: 800px;
+  margin: auto;
 }
 #breakdown thead {
   background-color: var(--medium-green);
@@ -116,7 +151,8 @@ body {
 }
 
 #save {
-  padding-top: 0;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
 }
 #save .btn-white {
   width: 100%;
@@ -128,6 +164,8 @@ body {
   font-size: 1.5rem;
   display: flex;
   justify-content: space-between;
+  max-width: 400px;
+  margin: auto;
 }
 #save .btn-white:hover {
   background-color: var(--darkest-green);
@@ -148,9 +186,11 @@ body {
   width: 100%;
   flex-flow: column nowrap;
   padding: 1.25rem 2rem;
+  align-items: center;
 }
 #about-results > section.info {
   display: none;
+  max-width: calc(850px + 3rem);
 }
 #about-results.expanded .arrow {
   cursor: pointer;
@@ -160,11 +200,27 @@ body {
   text-align: center;
   width: 100%;
   margin-top: 0;
+  transition: font-size 0.5s ease-in-out;
+}
+#about-results.expanded h1 {
+  font-size: 2.2rem;
 }
 #about-results .arrow {
   text-align: center;
   transition: transform 0.5s ease-in-out;
 }
+#about-results h3 {
+  font-size: 1.5rem;
+}
+#about-results hr {
+  width: 180px;
+  height: 16px;
+  margin: -12px -3px 10px;
+  background-color: var(--medium-green);
+  opacity: 0.3;
+  border: none;
+}
+
 
 .modal {
   display: none;
@@ -207,7 +263,7 @@ body {
 }
 
 .clickables > * {
-  padding: 10px;
+  padding: 12px;
   font-size: 1rem;
   border-radius: 10px;
 }

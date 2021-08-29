@@ -6,7 +6,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 {% endblock %}
 
-{% block title %}Your Carbon Footprint | FoodPrints{% endblock %}
+{% block title %}Your Carbon Footprint | Food Prints{% endblock %}
 {% block body %}
 <article id="about-results">
     <h1>About Your Results</h1>
@@ -14,6 +14,7 @@
         {% for i in about %}
         <div>
             <h3>{{ i.title }}</h3>
+            <hr>
             <p> {{ i.description }}</p>
         </div>
         {% endfor %}
@@ -22,7 +23,8 @@
 </article>
 
 <section id="summary">
-    <h1>Total CO<sub>2</sub> released</h1>
+    <img src="{% static 'img/food.png' %}">
+    <h1>Your groceries released</h1>
     <div class="info">
         <span class="big-number">{{ emissions }}</span>
         <div class="unit">
@@ -80,6 +82,7 @@
     </div>
 </section>
 <section id="breakdown">
+    <p>See the footprints of the products on your receipt below:</p>
     <table>
         <thead>
             <tr>
@@ -109,6 +112,7 @@
 </section>
 
 <section id="save">
+    <p>Want to keep your results?</p>
     <a onclick="showModal('share')" class="btn-white pointer"><span>Save Receipt</span><i class="fas fa-bookmark"></i></a>
     <div class="modal" id="share">
         <div class="popup">
