@@ -1,4 +1,8 @@
 # FoodPrints
+![license](https://img.shields.io/badge/license-BSD--3--Clause-green?style=flat-square)
+
+**Created for [Technova 2021](https://technova2021.devpost.com/)**
+
 FoodPrints is a web app for the everyday user looking to better understand their impact on the planet. The app provides a quick and easy way for users to check their climate footprint on a day-to-day basis by parsing their grocery receipts to provide valuable insights about purchased items.
 
 ## Installation
