@@ -43,12 +43,40 @@
     <div class="info">
         <div>
             <p>{{ local_percent }}% Locally Sourced</p>
-            <div class="meter" style="width: {{ local_ratio }}%"></div>
+            <div class="meter" id="local-fraction" style="width: {{ local_ratio }}%"></div>
         </div>
         <div>
             <p>{{ global_percent }}% Globally Sourced</p>
-            <div class="meter" style="width: {{ global_ratio }}%"></div>
+            <div class="meter" id="global-fraction" style="width: {{ global_ratio }}%"></div>
         </div>
+        <style>
+            .meter {
+                animation-duration: 2s;
+                animation-iteration-count: 1;
+            }
+            #local-fraction {
+                animation-name: local-slidein;
+            }
+            #global-fraction {
+                animation-name: global-slidein;
+            }
+            @keyframes local-slidein {
+              from {
+                width: 0%;
+              }
+              to {
+                width: {{ local_ratio }}%;
+              }
+            }
+            @keyframes global-slidein {
+              from {
+                width: 0%;
+              }
+              to {
+                width: {{ global_ratio }}%;
+              }
+            }
+        </style>
     </div>
 </section>
 <section id="breakdown">
