@@ -97,10 +97,19 @@ class ResultsPageView(generic.TemplateView):
             i['emissions'] = round(i['emissions'], 5)
             context['items'].append(i)
 
-        local_percent = local_count / len(purchase.items.all())
-        global_percent = (1 - local_percent)
-        context['local_percent'] = round(local_percent * 100, 2)
-        context['global_percent'] = round(global_percent * 100, 2)
+        local_percent = local_count/len(purchase.items.all())
+        global_percent = (1-local_percent)
+        context['local_percent'] = int(round(local_percent, 2)*100)
+        context['global_percent'] = int(round(global_percent, 2)*100)
+
+        if local_percent < global_percent:
+            context['local_ratio'] = int(round(local_percent / global_percent, 2)*100)
+            context['global_ratio'] = 100
+        elif local_percent > global_percent:
+            context['local_ratio'] = 100
+            context['global_ratio'] = int(round(global_percent / local_percent, 2)*100)
+        else:
+            context['local_ratio'] = context['global_ratio'] = 100
 
         context['emissions_land'] = emissions_land
         context['emissions_farm'] = emissions_farm
