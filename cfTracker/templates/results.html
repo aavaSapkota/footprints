@@ -18,7 +18,7 @@
         </div>
         {% endfor %}
     </section>
-    <span class="arrow" id="about-toggle"><i class="fas fa-angle-double-down"></i></span>
+    <span class="arrow pointer" id="about-toggle"><i class="fas fa-angle-double-down"></i></span>
 </article>
 
 <section id="summary">
@@ -43,12 +43,40 @@
     <div class="info">
         <div>
             <p>{{ local_percent }}% Locally Sourced</p>
-            <div class="meter" style="width: {{ local_ratio }}%"></div>
+            <div class="meter" id="local-fraction" style="width: {{ local_ratio }}%"></div>
         </div>
         <div>
             <p>{{ global_percent }}% Globally Sourced</p>
-            <div class="meter" style="width: {{ global_ratio }}%"></div>
+            <div class="meter" id="global-fraction" style="width: {{ global_ratio }}%"></div>
         </div>
+        <style>
+            .meter {
+                animation-duration: 2s;
+                animation-iteration-count: 1;
+            }
+            #local-fraction {
+                animation-name: local-slidein;
+            }
+            #global-fraction {
+                animation-name: global-slidein;
+            }
+            @keyframes local-slidein {
+              from {
+                width: 0%;
+              }
+              to {
+                width: {{ local_ratio }}%;
+              }
+            }
+            @keyframes global-slidein {
+              from {
+                width: 0%;
+              }
+              to {
+                width: {{ global_ratio }}%;
+              }
+            }
+        </style>
     </div>
 </section>
 <section id="breakdown">
@@ -117,16 +145,13 @@ $(document).ready(() => {
     $("#about-toggle").click(function() {
         if ($("#about-results").hasClass("expanded")) {
             $("#about-results").removeClass("expanded");
-            $("#about-results > section.info").slideUp();
+            $("#about-results > section.info").slideUp(700);
         } else {
             $("#about-results").addClass("expanded");
-            $("#about-results > section.info").slideDown();
+            $("#about-results > section.info").slideDown(700);
         }
     });
 
-    // $(".modal .close").click(function() {
-    //     $(this).closest(".modal").hide();
-    // });
     $("#share-link").val(document.location);
 
 })
@@ -150,7 +175,7 @@ function copy(id, btn) {
 }
 </script>
 
-<hr>
+{% comment %}
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
     google.charts.load('current', {
@@ -251,4 +276,5 @@ function copy(id, btn) {
 </script>
 
 <div id="chart_div"></div>
+{% endcomment %}
 {% endblock %}

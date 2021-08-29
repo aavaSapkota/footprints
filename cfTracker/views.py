@@ -137,7 +137,7 @@ class ResultsPageView(generic.TemplateView):
         about = [
             {
                 "title": "Total CO2 Released",
-                "description": "The total CO2 released is calculated as the sum of the impact of producing the grocery item(according to OurWorldinData) and the impact of transporting the food from its place of origin to Toronto."
+                "description": "The total CO2 released is calculated as the sum of the impact of producing the grocery item (according to OurWorldinData) and the impact of transporting the food from its place of origin to Toronto."
             },
             {
                 "title": "Locally vs Globally Sourced",
