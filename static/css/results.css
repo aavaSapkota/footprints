@@ -1,0 +1,164 @@
+:not(article) section, article {
+  padding: 2rem;
+  display: flex;
+}
+
+h1, h2, h3, table {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+}
+
+p, a {
+  font-size: 1.2rem;
+  font-family: "Zilla Slab", serif;
+}
+
+sub {
+  font-size: 50%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.info {
+    padding: 0; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+.info * {
+    margin: 0;
+}
+
+.info div {
+    margin-bottom: 1rem;
+}
+
+.info p {
+    font-size: 1rem; 
+}
+
+#summary {
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+#summary h1 {
+  margin-bottom: 0.3rem;
+  margin-top: 0;
+  color: var(--dark-grey);
+}
+#summary .info {
+  display: inline-flex;
+  font-family: "Open Sans", sans-serif;
+}
+#summary .info .big-number {
+  font-size: 5rem;
+  line-height: 1;
+  margin: 0 0.7rem;
+  color: var(--green);
+}
+#summary .info .unit {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+#source {
+  background-color: var(--green);
+}
+#source img {
+  max-width: 40%;
+  border: 10px solid white;
+}
+#source .info {
+  flex-grow: 1;
+  margin-left: 1rem;
+  color: white;
+}
+#source .info > :first-child {
+  margin-bottom: 1.5rem;
+}
+#source .info .meter {
+  width: 100%;
+  background-color: var(--medium-green);
+  height: 7px;
+  border-radius: 5px;
+}
+#source .info p {
+  margin-bottom: 0.7rem;
+}
+
+#breakdown table {
+  width: 100%;
+  border-collapse: collapse;
+  border-style: hidden;
+}
+#breakdown thead {
+  background-color: var(--medium-green);
+  color: white;
+}
+#breakdown thead th {
+  border-bottom: hidden;
+  border: 1px solid white;
+}
+#breakdown th, #breakdown td {
+  font-weight: normal;
+  padding: 0.75rem;
+  text-align: center;
+}
+#breakdown td {
+  color: var(--green);
+  border: 1px solid var(--medium-green);
+}
+
+#save {
+  padding-top: 0;
+}
+#save a.btn-white {
+  width: 100%;
+  padding: 1rem 2rem;
+  box-shadow: 0 3px 5px var(--light-grey);
+  border-radius: 10px;
+  color: var(--green);
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+#save a.btn-white:hover {
+  background-color: var(--darkest-green);
+  color: white;
+}
+#save a.btn-white, #save a.btn-white:hover {
+  transition: all 0.5s ease-in-out;
+}
+
+#about-results {
+  background-color: var(--light-green);
+  border-radius: 0 0 30px 30px;
+  box-shadow: 0 0 20px var(--light-grey);
+  width: 100%;
+  flex-flow: column nowrap;
+}
+#about-results > section.info {
+  display: none;
+}
+#about-results.expanded {
+  position: absolute;
+}
+#about-results.expanded .arrow {
+  cursor: pointer;
+  transform: rotate(180deg);
+}
+#about-results h1 {
+  text-align: center;
+  width: 100%;
+  margin-top: 0;
+}
+#about-results .arrow {
+  text-align: center;
+}
