@@ -6,7 +6,7 @@
 .header{
     position:relative;
     height: 60vh;
-    background-image: url('/static/img/home-bkg.png');
+    background-image: linear-gradient(127deg, rgba(5,30,5,0.5),rgba(0,0,0,0)), url('/static/img/home-bkg.png');
     background-repeat: none;
     background-size:cover;
     padding: 3vh 0;
@@ -77,10 +77,12 @@
     padding:2.5vw 5vw;
 }
 
-.rounded{
+.rounded {
     border-top: 8px solid ;
     border-radius: 5px; 
     width: 90%;
+    color: var(--green);
+    opacity: 0.6;
 }
 
 h1 {
@@ -114,6 +116,12 @@ button{
     border-radius: 20px;
     border-color: var(--yellow);
     cursor: pointer; 
+    transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+    background: #FFBD11;
+    border-color: #FFBD11;
 }
 
 a {
@@ -137,3 +145,12 @@ strong {
 
 }
 
+body > div:last-child  {
+    background-color: #060B05;
+    color: #333;
+    text-align: center;
+    padding-bottom: 7px;
+}
+body > div:last-child a {
+    color: #333;
+}
