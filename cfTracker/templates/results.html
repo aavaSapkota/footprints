@@ -33,7 +33,13 @@
 </section>
 <section id="source">
     <!-- todo: future - on click, modal of receipt (enlargen) -->
-    <img src="{{ purchase.receipt.url }}" alt="Receipt">
+    <img class="pointer" src="{{ purchase.receipt.url }}" alt="Receipt" onclick="showModal('receipt')">
+    <div class="modal" id="receipt">
+        <div class="popup">
+            <span class="close"><i class="fas fa-times"></i></span>
+            <img class="" src="{{ purchase.receipt.url }}" alt="Receipt">
+        </div>
+    </div>
     <div class="info">
         <div>
             <p>{{ local_percent }}% Locally Sourced</p>
@@ -75,21 +81,73 @@
 </section>
 
 <section id="save">
-    <a href="#" class="btn-white"><span>Save Receipt</span></a>
+    <a onclick="showModal('share')" class="btn-white pointer"><span>Save Receipt</span><i class="fas fa-bookmark"></i></a>
+    <div class="modal" id="share">
+        <div class="popup">
+            <span class="close"><i class="fas fa-times"></i></span>
+            <div>
+                <h2>Share your receipt!</h2>
+                <div class="clickables">
+                    <input value="" readonly id="share-link" onClick="this.select();">
+                    <button class="pointer btn-green copy-link" onclick="copy('share-link',this)">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <script>
-    $(document).ready(() => {
-            $("#about-toggle").click(function() {
-                    if ($("#about-results").hasClass("expanded")) {
-                            $("#about-results").removeClass("expanded");
-                            $("#about-results > section.info").slideUp()
-                        } else {
-                                $("#about-results").addClass("expanded");
-                                $("#about-results > section.info").slideDown()
-                            }
-                });
-        })
+function hideModalIfClickOutside(evt) { 
+    if(!$(evt.target).closest('.popup').length) {
+        hideModals();
+    }
+}
+function hideModalIfEscKey(evt) { 
+    if(evt.which == 27) {
+        hideModals();
+    }
+}
+function hideModals() {
+    $('.modal').hide();
+    window.removeEventListener("click",hideModalIfClickOutside);
+    window.removeEventListener("keyup",hideModalIfEscKey);
+}
+
+$(document).ready(() => {
+    $("#about-toggle").click(function() {
+        if ($("#about-results").hasClass("expanded")) {
+            $("#about-results").removeClass("expanded");
+            $("#about-results > section.info").slideUp();
+        } else {
+            $("#about-results").addClass("expanded");
+            $("#about-results > section.info").slideDown();
+        }
+    });
+
+    // $(".modal .close").click(function() {
+    //     $(this).closest(".modal").hide();
+    // });
+    $("#share-link").val(document.location);
+
+})
+
+function showModal(id) {
+    $(`#${id}`).css("display","flex");
+    // dirty
+    setTimeout(() => {
+        window.addEventListener("click",hideModalIfClickOutside);
+        window.addEventListener("keyup",hideModalIfEscKey);
+    }, 200)
+}
+function copy(id, btn) {
+    let inpt = document.getElementById(id);
+    inpt.select();
+    inpt.setSelectionRange(0, 99999);
+    if (document.execCommand("copy")) {
+        btn.textContent = "Copied!"
+        setTimeout(() => {btn.textContent = "Copy";}, 700);
+    };
+}
 </script>
 
 <hr>

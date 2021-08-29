@@ -118,7 +118,7 @@ body {
 #save {
   padding-top: 0;
 }
-#save a.btn-white {
+#save .btn-white {
   width: 100%;
   padding: 1rem 2rem;
   box-shadow: 0 3px 5px var(--light-grey);
@@ -126,14 +126,20 @@ body {
   color: var(--green);
   text-decoration: none;
   font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
 }
-#save a.btn-white:hover {
+#save .btn-white:hover {
   background-color: var(--darkest-green);
   color: white;
 }
-#save a.btn-white, #save a.btn-white:hover {
+#save .btn-white, #save .btn-white:hover {
   transition: all 0.5s ease-in-out;
 }
+.fa-bookmark {
+  line-height: 1.2;
+}
+
 
 #about-results {
   background-color: var(--light-green);
@@ -141,12 +147,10 @@ body {
   box-shadow: 0 0 20px var(--light-grey);
   width: 100%;
   flex-flow: column nowrap;
+  padding: 1.25rem 2rem;
 }
 #about-results > section.info {
   display: none;
-}
-#about-results.expanded {
-  position: absolute;
 }
 #about-results.expanded .arrow {
   cursor: pointer;
@@ -159,4 +163,70 @@ body {
 }
 #about-results .arrow {
   text-align: center;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  background-color: rgba(0,0,0,0.7);
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+.modal .popup {
+  margin: auto;
+  padding: 2rem;
+  background-color: white;
+  height: min-content;
+  border-radius: 10px;
+}
+.modal .popup > img {
+  height: 65vh;
+  max-width: revert !important;
+  border: 1px solid var(--light-grey) !important;
+}
+.modal .popup h2 {
+  margin-top: 0;
+}
+
+.modal .close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.modal .close i {
+  font-weight: 300 !important;
+}
+
+.clickables > * {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+.btn-green {
+  margin-left: 0.5rem;
+  background-color: var(--medium-green);
+  color: white;
+  transition:  background-color 0.2s ease-in-out;
+  border:  none;
+}
+.btn-green:hover {
+    background-color: var(--dark-green);
+}
+.clickables input {
+  border: 1px solid var(--light-grey);
+}
+.copy-link::before {
+  font-family: "Font Awesome 5 Pro";
+  content: '\f0c1\00a0\00a0';
+}
+.copy-link::after {
+  content: '\00a0';
 }
