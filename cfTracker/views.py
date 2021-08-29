@@ -145,7 +145,7 @@ class ResultsPageView(generic.TemplateView):
             },
             {
                 "title": "Kg of CO2 / Kg of Produce",
-                "description": "This is the unit of measure used to describe the carbon 'footprint' or impact of an item. It is the CO2 equivalent in kilograms per kilogram of said item"
+                "description": "This is the unit of measure used to describe the carbon 'footprint' or impact of an item. It is the CO2 equivalent in kilograms per kilogram of said item."
             }
         ]
         context['about'] = about
