@@ -15,7 +15,7 @@
         
         <div class="header-content">
             <img src="/static/img/Nav Icon.svg" alt="nav bar">
-            <h1 style="font-weight: 300;">Green <strong>Track</strong></h1>
+            <h1 style="font-weight: 300;">Food <strong>Print</strong></h1>
             <p>Walking towards a greener future...<br>one receipt at a time</p>
             <button class="button"><a href="{% url 'upload' %}" style="text-decoration: none;" >Scan your Receipt</a></button>
         </div>
@@ -27,12 +27,12 @@
     </div>
     <div class="description" id="about">
         <p class="text">
-            Welcome to Green Track, the webapp that involves stuff and more stuff that allows you to feel guilty when you open it. 
+            Welcome to Food Print, the webapp that involves stuff and more stuff that allows you to feel guilty when you open it. 
         </p>
         <div class="row">
             <div class="problem">
                 <h1>The Problem</h1>
-                <img src="/static/img/globe.svg" alt="">
+                <img class = "center" src="/static/img/globe.svg" alt="">
                 <h2 style="color: white;">People lack insight on the effects their behaviors have on the world.</h2>
                 <p class="textTwo">In 2017, Canadians were reported to have emitted 15.59 tons per capita of CO2 emissions. This is one of the highest in the world. </p>
                 <hr class="rounded">
@@ -42,9 +42,13 @@
                 <h1>Receipts</h1>
                 <p class="text" style="color: white;" >Here at Green Track, we provide a quick and easy way for you to check your climate footprint on a day to day basis. By simply uploading pictures of your receipts, we relay to you valuable insights about your purchased items and how much CO2 was emitted to get them to you.</p>
                 <div>
-                    <button class="button"><a href="{% url 'upload' %}" style="text-decoration: none;" >Scan your Receipt</a></button>
+                    <button style="display:block; 
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-bottom: 5vh;
+                    "class="button"><a href="{% url 'upload' %}" style="text-decoration: none;" >Scan your Receipt</a></button>
                 </div>
-                <img src="/static/img/receipt.svg" alt="">
+                <img class = "center" src="/static/img/receipt.svg" alt="">
             </div>
         </div>
     </div>
