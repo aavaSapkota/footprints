@@ -120,7 +120,7 @@ body {
 #breakdown, #save {
   display: revert;
 }
-#breakdown > p, #save > p {
+#breakdown > p, #save > p, #emission-types > p {
  text-align: center;
  font-size: 1.3rem;
  margin-bottom: 2rem;
@@ -223,6 +223,15 @@ body {
   background-color: var(--medium-green);
   opacity: 0.3;
   border: none;
+}
+
+#emission-types {
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+}
+#emission-types > p {
+  margin-bottom: 0;
 }
 
 

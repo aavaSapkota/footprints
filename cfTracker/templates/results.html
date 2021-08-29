@@ -110,6 +110,11 @@
     </table>
 </section>
 
+<section id="emission-types">
+    <p>Your groceries' emissions by category (units: kg CO₂ / kg produce):</p>
+    <div id="chart_div"></div>
+</section>
+
 <section id="save">
     <p>Want to keep your results?</p>
     <a onclick="showModal('share')" class="btn-white pointer"><span>Save Receipt</span><i class="fas fa-bookmark"></i></a>
@@ -190,106 +195,59 @@ function copy(id, btn) {
 }
 </script>
 
-{% comment %}
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
     google.charts.load('current', {
-            'packages': ['corechart']
-        });
+        'packages': ['corechart']
+    });
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Emissions Type');
-            data.addColumn('number', 'Amount');
-            data.addRows([{
-                    %
-                    if emissions_land >= 0 %
-                }
-                    ['Land Use Emissions', {
-                            {
-                                    emissions_land
-                                }
-                        }],
-                    {
-                            % endif %
-                        } {
-                                %
-                                    if emissions_farm >= 0 %
-                            }
-                    ['Farm Emissions', {
-                            {
-                                    emissions_farm
-                                }
-                        }],
-                    {
-                            % endif %
-                        } {
-                                %
-                                    if emissions_feed >= 0 %
-                            }
-                    ['Animal Feed Emissions', {
-                            {
-                                    emissions_feed
-                                }
-                        }],
-                    {
-                            % endif %
-                        } {
-                                %
-                                    if emissions_processing >= 0 %
-                            }
-                    ['Processing Emissions', {
-                            {
-                                    emissions_processing
-                                }
-                        }],
-                    {
-                            % endif %
-                        } {
-                                %
-                                    if emissions_transport >= 0 %
-                            }
-                    ['Transport Emissions', {
-                            {
-                                    emissions_transport
-                                }
-                        }],
-                    {
-                            % endif %
-                        } {
-                                %
-                                    if emissions_retail >= 0 %
-                            }
-                    ['Retail Emissions', {
-                            {
-                                    emissions_retail
-                                }
-                        }],
-                    {
-                            % endif %
-                        } {
-                                %
-                                    if emissions_packaging >= 0 %
-                            }
-                    ['Packaging Emissions', {
-                            {
-                                    emissions_packaging
-                                }
-                        }] {
-                                % endif %
-                            }
-                ])
-            var options = {
-                    'title': 'Emissions by Category',
-                    'width': 500,
-                    'height': 400
-                }
-            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
-        }
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Emissions Type');
+        data.addColumn('number', 'Amount');
+        data.addRows([
+            {% if emissions_land >= 0 %}
+                ['Land Use Emissions', {{emissions_land }}],
+            {% endif %} 
+            {% if emissions_farm >= 0 %}
+                ['Farm Emissions', {{ emissions_farm }}],
+            {% endif %} 
+            {% if emissions_feed >= 0 %}
+                ['Animal Feed Emissions', {{emissions_feed }}],
+            {% endif %}
+            {% if emissions_processing >= 0 %}
+                ['Processing Emissions', {{emissions_processing }}],
+            {% endif %} 
+            {% if emissions_transport >= 0 %}
+                ['Transport Emissions', {{emissions_transport }}],
+            {% endif %} 
+            {% if emissions_retail >= 0 %}
+                ['Retail Emissions', {{ emissions_retail }}],
+            {% endif %} 
+            {% if emissions_packaging >= 0 %}
+                ['Packaging Emissions', {{ emissions_packaging }}] 
+            {% endif %}
+        ]);
+        var options = {
+            // 'title': 'Emissions by Category',
+            'width': '600',
+            'colors': ["#8DA97A", "#597447", "#6B805D", "#2D3A21","#31432B","#9DC974","#729361","#B6E6A4"],
+            'height': 400,
+            'fontName': "Open Sans",
+            'fontSize': 16,
+            // 'legend' : {
+            //     'position': 'bottom'
+            // }
+
+    chartArea: {
+      // leave room for y-axis labels
+      width: '94%'
+    }
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
 </script>
 
-<div id="chart_div"></div>
-{% endcomment %}
 {% endblock %}
