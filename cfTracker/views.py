@@ -82,7 +82,7 @@ class ResultsPageView(generic.TemplateView):
                         float(item_data['distance'])
                     emissions_transport += 0.000060 * \
                         item.quantity * float(item_data['distance'])
-                    local_count +=1
+                    local_count += 1
                 else:
                     i['emissions'] += 0.000025 * item.quantity * \
                         float(item_data['distance'])
@@ -97,10 +97,10 @@ class ResultsPageView(generic.TemplateView):
             i['emissions'] = round(i['emissions'], 5)
             context['items'].append(i)
 
-        local_percent = local_count/len(purchase.items.all())
-        global_percent = (1-local_percent)
-        context['local_percent'] = round(local_percent*100, 2)
-        context['global_percent'] = round(global_percent*100, 2)
+        local_percent = local_count / len(purchase.items.all())
+        global_percent = (1 - local_percent)
+        context['local_percent'] = round(local_percent * 100, 2)
+        context['global_percent'] = round(global_percent * 100, 2)
 
         context['emissions_land'] = emissions_land
         context['emissions_farm'] = emissions_farm
@@ -110,7 +110,24 @@ class ResultsPageView(generic.TemplateView):
         context['emissions_retail'] = emissions_retail
         context['emissions_packaging'] = emissions_packaging
         context['emissions'] = emissions_land + emissions_farm + emissions_feed + \
-            emissions_processing + emissions_transport + emissions_retail + emissions_packaging
+            emissions_processing + emissions_transport + \
+            emissions_retail + emissions_packaging
         context['emissions'] = round(context['emissions'], 3)
+
+        about = [
+            {
+                "title": "Total CO2 Released",
+                "description": "The total CO2 released is calculated as the sum of the impact of producing the grocery item(according to OurWorldinData) and the impact of transporting the food from its place of origin to Toronto."
+            },
+            {
+                "title": "Locally vs Globally Sourced",
+                "description": "Place of origin has a small impact on the carbon footprint because most produce is transported by water, not air. Despite this, locally sourced goods generally have a lower carbon footprint."
+            },
+            {
+                "title": "Kg of CO2 per Kg of Produce",
+                "description": "This is the unit of measure used to describe the carbon 'footprint' or impact of an item. It is the CO2 equivalent in kilograms per kilogram of said item"
+            }
+        ]
+        context['about'] = about
 
         return context

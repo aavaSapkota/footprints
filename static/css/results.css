@@ -25,6 +25,24 @@ body {
   margin: 0;
 }
 
+.info {
+    padding: 0; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+.info * {
+    margin: 0;
+}
+
+.info div {
+    margin-bottom: 1rem;
+}
+
+.info p {
+    font-size: 1rem; 
+}
+
 #summary {
   flex-flow: column nowrap;
   justify-content: center;
@@ -130,7 +148,6 @@ body {
   display: none;
 }
 #about-results.expanded {
-  height: 90%;
   position: absolute;
 }
 #about-results.expanded .arrow {

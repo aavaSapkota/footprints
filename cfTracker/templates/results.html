@@ -9,22 +9,27 @@
 {% block title %}GreenTrack | Results {% endblock %}
 {% block body %}
 <article id="about-results">
-    <h1>About your Results</h1>
+    <h1>About Your Results</h1>
     <section class="info">
-        <p> hello world</p>
+        {% for i in about %}
+        <div>
+            <h3>{{ i.title }}</h3>
+            <p> {{ i.description }}</p>
+        </div>
+        {% endfor %}
     </section>
     <span class="arrow" id="about-toggle"><i class="fas fa-angle-double-down"></i></span>
 </article>
 
 <section id="summary">
-<h1>Total CO<sub>2</sub> released</h1>
-<div class="info">
-    <span class="big-number">{{ emissions }}</span>
-    <div class="unit">
-        <span>kg of</span>
-        <span>CO<sub>2</sub></span>
+    <h1>Total CO<sub>2</sub> released</h1>
+    <div class="info">
+        <span class="big-number">{{ emissions }}</span>
+        <div class="unit">
+            <span>kg of</span>
+            <span>CO<sub>2</sub></span>
+        </div>
     </div>
-</div>
 </section>
 <section id="source">
     <!-- todo: future - on click, modal of receipt (enlargen) -->
@@ -43,28 +48,28 @@
 <section id="breakdown">
     <table>
         <thead>
-        <tr>
-            <th>Item</th>
-            <!-- <th>Quantity (kg)</th> -->
-            <th>Source</th>
-            <th>Footprint <br> (kgCO₂eq)</th>
-        </tr>
+            <tr>
+                <th>Item</th>
+                <!-- <th>Quantity (kg)</th> -->
+                <th>Source</th>
+                <th>Footprint <br> (kgCO₂eq)</th>
+            </tr>
         </thead>
         <tbody>
-        {% for item in items %}
+            {% for item in items %}
             <tr>
                 <td>{{ item.item | title }}</td>
                 <td>
                     {% if item.local %}
-                        Local
+                    Local
                     {% else %}
-                        Global 
+                    Global
                     {% endif %}
                 </td>
                 <!-- <td>{{ item.quantity }}</td> -->
                 <td>{{ item.emissions }}</td>
             </tr>
-        {% endfor %}
+            {% endfor %}
         </tbody>
     </table>
 </section>
@@ -75,59 +80,117 @@
 
 <script>
     $(document).ready(() => {
-        $("#about-toggle").click(function() {
-            if ($("#about-results").hasClass("expanded")) {
-                $("#about-results").removeClass("expanded");
-                $("#about-results > section.info").slideUp()
-            } else {
-                $("#about-results").addClass("expanded");
-                $("#about-results > section.info").slideDown()
-            }
-        });
-    })
+            $("#about-toggle").click(function() {
+                    if ($("#about-results").hasClass("expanded")) {
+                            $("#about-results").removeClass("expanded");
+                            $("#about-results > section.info").slideUp()
+                        } else {
+                                $("#about-results").addClass("expanded");
+                                $("#about-results > section.info").slideDown()
+                            }
+                });
+        })
 </script>
 
 <hr>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {
+            'packages': ['corechart']
+        });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Emissions Type');
             data.addColumn('number', 'Amount');
-            data.addRows([
-                {% if emissions_land >= 0 %}
-                ['Land Use Emissions', {{ emissions_land }}],
-                {% endif %}
-                {% if emissions_farm >= 0 %}
-                ['Farm Emissions', {{ emissions_farm }}],
-                {% endif %}
-                {% if emissions_feed >= 0 %}
-                ['Animal Feed Emissions', {{ emissions_feed }}],
-                {% endif %}
-                {% if emissions_processing >= 0 %}
-                ['Processing Emissions', {{ emissions_processing }}],
-                {% endif %}
-                {% if emissions_transport >= 0 %}
-                ['Transport Emissions', {{ emissions_transport }}],
-                {% endif %}
-                {% if emissions_retail >= 0 %}
-                ['Retail Emissions', {{ emissions_retail }}],
-                {% endif %}
-                {% if emissions_packaging >= 0 %}
-                ['Packaging Emissions', {{ emissions_packaging }}]
-                {% endif %}
-            ])
+            data.addRows([{
+                    %
+                    if emissions_land >= 0 %
+                }
+                    ['Land Use Emissions', {
+                            {
+                                    emissions_land
+                                }
+                        }],
+                    {
+                            % endif %
+                        } {
+                                %
+                                    if emissions_farm >= 0 %
+                            }
+                    ['Farm Emissions', {
+                            {
+                                    emissions_farm
+                                }
+                        }],
+                    {
+                            % endif %
+                        } {
+                                %
+                                    if emissions_feed >= 0 %
+                            }
+                    ['Animal Feed Emissions', {
+                            {
+                                    emissions_feed
+                                }
+                        }],
+                    {
+                            % endif %
+                        } {
+                                %
+                                    if emissions_processing >= 0 %
+                            }
+                    ['Processing Emissions', {
+                            {
+                                    emissions_processing
+                                }
+                        }],
+                    {
+                            % endif %
+                        } {
+                                %
+                                    if emissions_transport >= 0 %
+                            }
+                    ['Transport Emissions', {
+                            {
+                                    emissions_transport
+                                }
+                        }],
+                    {
+                            % endif %
+                        } {
+                                %
+                                    if emissions_retail >= 0 %
+                            }
+                    ['Retail Emissions', {
+                            {
+                                    emissions_retail
+                                }
+                        }],
+                    {
+                            % endif %
+                        } {
+                                %
+                                    if emissions_packaging >= 0 %
+                            }
+                    ['Packaging Emissions', {
+                            {
+                                    emissions_packaging
+                                }
+                        }] {
+                                % endif %
+                            }
+                ])
             var options = {
-                'title': 'Emissions by Category',
-                'width': 500,
-                'height': 400
-            }
+                    'title': 'Emissions by Category',
+                    'width': 500,
+                    'height': 400
+                }
             var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
             chart.draw(data, options);
         }
-    </script>
+</script>
 
-    <div id="chart_div"></div>
+<div id="chart_div"></div>
 {% endblock %}
