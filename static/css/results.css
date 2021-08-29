@@ -64,9 +64,7 @@ body {
   color: var(--green);
 }
 #summary .info .unit {
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  text-align: center;
 }
 
 #source {

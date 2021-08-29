@@ -144,7 +144,7 @@ class ResultsPageView(generic.TemplateView):
                 "description": "Place of origin has a small impact on the carbon footprint because most produce is transported by water, not air. Despite this, locally sourced goods generally have a lower carbon footprint."
             },
             {
-                "title": "Kg of CO2 per Kg of Produce",
+                "title": "Kg of CO2 / Kg of Produce",
                 "description": "This is the unit of measure used to describe the carbon 'footprint' or impact of an item. It is the CO2 equivalent in kilograms per kilogram of said item"
             }
         ]
