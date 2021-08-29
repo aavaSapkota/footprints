@@ -34,7 +34,8 @@ input[type="file"] {
 }
 
 .upload-btn {
-    border: 1px dashed #ccc;
+    border: 2px dashed var(--light-grey);
+    background-color: rgba(255,255,255,0.5);
     padding: 6px 12px;
     cursor: pointer;
     height: 100px;
@@ -47,7 +48,15 @@ input[type="file"] {
 .save-btn {
     padding: 1rem;
     border-radius: 10px;
-    margin-top: 50px;
+    margin-top: 25px;
+    background-color: var(--medium-green);
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition:  background-color 0.2s ease-in-out;
+}
+.save-btn:hover {
+    background-color: var(--dark-green);
 }
 
 a {
