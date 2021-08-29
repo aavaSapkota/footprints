@@ -17,7 +17,7 @@
             <img src="/static/img/Nav Icon.svg" alt="nav bar">
             <h1 style="font-weight: 300;">Food <strong>Print</strong></h1>
             <p>Walking towards a greener future...<br>one receipt at a time</p>
-            <button class="button"><a href="{% url 'upload' %}" style="text-decoration: none;" >Scan your Receipt</a></button>
+            <a href="{% url 'upload' %}" style="text-decoration: none;" ><button class="button">Scan your Receipt</button></a>
         </div>
         <div class="wave">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -27,8 +27,8 @@
     </div>
     <div class="description" id="about">
         <p class="text">
-            Welcome to Food Print, the webapp that involves stuff and more stuff that allows you to feel guilty when you open it. 
-        </p>
+            Welcome to Food Print; a webapp for the everyday user looking to better 
+            understand their impact on the planet.        </p>
         <div class="row">
             <div class="problem">
                 <h1>The Problem</h1>
@@ -42,11 +42,11 @@
                 <h1>Receipts</h1>
                 <p class="text" style="color: white;" >Here at Green Track, we provide a quick and easy way for you to check your climate footprint on a day to day basis. By simply uploading pictures of your receipts, we relay to you valuable insights about your purchased items and how much CO2 was emitted to get them to you.</p>
                 <div>
-                    <button style="display:block; 
+                    <a href="{% url 'upload' %}" style="text-decoration: none;" ><button style="display:block; 
                     margin-left: auto;
                     margin-right: auto;
                     margin-bottom: 5vh;
-                    "class="button"><a href="{% url 'upload' %}" style="text-decoration: none;" >Scan your Receipt</a></button>
+                    "class="button">Scan your Receipt</button></a>
                 </div>
                 <img class = "center" src="/static/img/receipt.svg" alt="">
             </div>
