@@ -1,0 +1,139 @@
+.container{
+    margin:0;
+    padding:0;
+}
+
+.header{
+    position:relative;
+    height: 60vh;
+    background-image: url('/static/img/home-bkg.png');
+    background-repeat: none;
+    background-size:cover;
+    padding: 3vh 0;
+}
+
+.header-content{
+    margin: 0 5%;
+}
+
+.header-content p{
+    margin-left: 1vh;
+    color:white;
+    font-size: 1.25rem;
+}
+
+.header-content button{
+    margin-left: 1vh;
+}
+
+.description{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.description button{
+    align-self: center;
+}
+
+.pitch {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    padding: 5% 0;
+    margin: 0 10%;
+}
+
+.text{
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: 'Zilla Slab',serif;
+    margin: 0;
+}
+
+.textTwo{
+    color:white;
+    text-align: center;
+    margin-left: 5%;
+    font-size: 1.2rem;
+}
+
+.problem{
+    display: flex;
+    background-color: #8DA97A;
+    flex-direction: column;
+    padding:2.5vw 5vw; 
+}
+
+.icon {
+    margin: auto; 
+}
+
+.receipts{
+    display: flex; 
+    background-color: #060B05;
+    flex-direction: column;
+    align-items: center;
+    padding:2.5vw 5vw;
+}
+
+.rounded{
+    border-top: 8px solid ;
+    border-radius: 5px; 
+    width: 90%;
+}
+
+h1 {
+    color: white;
+    font-size: 5rem;
+    text-align: left;
+    margin: 2rem 0;
+    font-weight: 200;
+}
+
+h2{
+    color: white;
+    text-align: center;
+    font-size: 3rem;
+    margin: 1rem 0;
+}
+
+h3{
+    text-align: center;
+    font-size: 2rem ;
+    font-family: 'Zilla Slab',serif;
+}
+
+button{
+    padding:  8px 10px;
+    margin: 4vw 0;
+    background: var(--yellow);
+    border-radius: 5px;
+    font-family: 'Zilla Slab',serif;
+    font-size: 1.5rem;
+    border-radius: 20px;
+    border-color: var(--yellow);
+    cursor: pointer; 
+}
+
+a {
+    text-decoration: none; 
+}
+
+strong {
+    font-weight: 800;
+}
+
+@media (max-width: 600px){
+    h1 {
+        font-size: 3rem;
+    }
+    h2 {
+        font-size: 1.75rem; 
+    }
+    h3 {
+        font-size: 1.5rem;
+    }
+
+}
+
