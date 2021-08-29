@@ -1,0 +1,59 @@
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+}
+
+.wrapper {
+    flex: 1;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.link {
+    margin-left: 2rem;
+}
+
+.upload {
+    width: 90%;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5rem;
+}
+
+input[type="file"] {
+    opacity: 0;
+    position: absolute;
+}
+
+.upload-btn {
+    border: 1px dashed #ccc;
+    padding: 6px 12px;
+    cursor: pointer;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.save-btn {
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

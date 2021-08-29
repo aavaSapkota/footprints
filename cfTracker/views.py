@@ -1,7 +1,10 @@
 from . import models
 from . import forms
+from django.core.files.images import ImageFile
+from django.urls import reverse
 from django.views import generic
 from .csvReader import data, aliases
+from .parseReceipt import parse_receipt
 
 
 class HomePageView(generic.TemplateView):
@@ -11,11 +14,22 @@ class HomePageView(generic.TemplateView):
 class UploadPageView(generic.edit.FormView):
     template_name = "upload.html"
     form_class = forms.ReceiptForm
-    success_url = '/'
+    success_url = '/results/'
 
     def form_valid(self, form):
-        # call parser with receipt path
-        # (form.cleaned_data.get("image").read())
+        # call parser, which returns data
+        receipt_img = form.cleaned_data.get("image").read()
+        store_name, items = parse_receipt(receipt_img)
+
+        # create objects from the data
+        p = models.Purchase.objects.create(store=store_name)
+        p.receipt = ImageFile(receipt_img)
+
+        for item_name, item_quantity in items.items():
+            models.Item.objects.create(item=item_name, quantity=item_quantity,purchase=p)
+
+        # redirect
+        self.success_url = reverse('results', kwargs={'slug': p.slug})
         return super().form_valid(form)
 
 
