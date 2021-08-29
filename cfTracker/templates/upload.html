@@ -1,9 +1,38 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/upload.css' %}">
+<script>
+    window.addEventListener('load',
+            function() {
+                    document.getElementById("id_image").addEventListener("change", function() {
+                            document.getElementById("file-name").textContent = this.value.substring(Math.max(this.value.lastIndexOf("\\"),this.value.lastIndexOf("/"))+1);
+                        })
+                });
+</script>
+{% endblock %}
 
 {% block body %}
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ form }}
-  <input type="submit" value="Save">
-</form>
+<div class="container" style="background-image: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('{% static 'svg/footprint.svg' %}')">
+    <div class="link">
+        <a href="/">&lt; Return HOME</a>
+    </div>
+    <div class="wrapper">
+        <div class="upload">
+            <h2>Upload your receipt</h2>
+            <form class="upload-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label class="upload-btn">
+                    <span id="file-name"></span>
+                    <input type="file" name="image" accept="image/*" required="" id="id_image">
+                    <span>
+                        Click To Browse For Receipt Images
+                    </span>
+                </label>
+                <input class="save-btn" type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
