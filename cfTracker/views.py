@@ -18,12 +18,12 @@ class UploadPageView(generic.edit.FormView):
 
     def form_valid(self, form):
         # call parser, which returns data
-        receipt_img = form.cleaned_data.get("image").read()
-        store_name, items = parse_receipt(receipt_img)
+        receipt_img = form.cleaned_data.get("image")
+        store_name, items = parse_receipt(receipt_img.read())
 
         # create objects from the data
-        p = models.Purchase.objects.create(store=store_name)
-        p.receipt = ImageFile(receipt_img)
+        p = models.Purchase.objects.create(store=store_name,receipt=receipt_img)
+        p.save()
 
         for item_name, item_quantity in items.items():
             models.Item.objects.create(item=item_name, quantity=item_quantity,purchase=p)
