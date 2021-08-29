@@ -9,15 +9,7 @@
     --dark-grey: #4f4f4f;
 }
 
-/*body{
-    margin: 0;
-    padding: 0;
-    vertical-align: baseline;
-    background: transparent;
-    overflow-x: hidden;
-    overflow-y: scroll;
-} */
-
 body {
     font-family: "Open Sans", sans-serif;
+    margin: 0;
 }
