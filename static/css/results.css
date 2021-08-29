@@ -149,6 +149,9 @@ body {
   color: var(--green);
   border: 1px solid var(--medium-green);
 }
+#breakdown tbody tr:hover {
+  background-color: #E1E9DA5E;
+}
 
 #save {
   padding-top: 1rem;

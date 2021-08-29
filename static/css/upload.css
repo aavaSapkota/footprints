@@ -26,6 +26,9 @@ body {
 .upload {
     width: 90%;
 }
+.upload h2 {
+    font-size: 2rem;
+}
 
 .upload-form {
     display: flex;
