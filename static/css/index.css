@@ -125,21 +125,28 @@ display:flex;
 flex-direction:row ;
 } */
 
-    .problem{
-        /* display: flex; */
-        background-color: #8DA97A;
-        flex-direction: column;
-        padding:5vw;
-    }
+.problem{
+    /* display: flex; */
+    
+    background-color: #8DA97A;
+    flex-direction: column;
+    padding:5vw; 
+}
 
-    .receipts{
+.receipts{
+    background-color: #060B05;
+    flex-direction: column;
+    padding:5vw;
+}
 
-        background-color: #060B05;
-        flex-direction: column;
-        padding:5vw;
-    }
+.rounded{
+    border-top: 8px solid ;
+    border-radius: 5px; 
+}
 
-    .rounded{
-        border-top: 8px solid ;
-        border-radius: 5px;
-    }
+.center{
+    display:block; 
+    margin-left: auto;
+    margin-right: auto;
+    width:50%;
+}
