@@ -211,6 +211,7 @@ body {
 #about-results .arrow {
   text-align: center;
   transition: transform 0.5s ease-in-out;
+  width: 100%;
 }
 #about-results h3 {
   font-size: 1.5rem;
