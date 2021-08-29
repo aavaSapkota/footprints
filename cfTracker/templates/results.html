@@ -131,7 +131,7 @@
 
 <script>
 function hideModalIfClickOutside(evt) { 
-    if(!$(evt.target).closest('.popup').length) {
+    if(!$(evt.target).closest('.popup').length || $(evt.target).closest('.popup .close').length) {
         hideModals();
     }
 }
