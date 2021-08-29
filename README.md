@@ -8,7 +8,7 @@ FoodPrints is a web app for the everyday user looking to better understand their
 ## Installation
 Clone the repository
 ```
-git clone https://github.com/aavaSapkota/carbon-footprint-tracker.git
+git clone https://github.com/aavaSapkota/footprints.git
 cd carbon-footprint-tracker
 ```
 Install requirements
