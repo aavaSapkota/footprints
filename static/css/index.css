@@ -40,6 +40,7 @@
     color:white;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 10vh;
+    text-align: left;
 }
 
 .header-content p{
@@ -49,8 +50,7 @@
     font-size: 2vh;
 }
 
-.header-content button{
-    margin-left: 1vh;
+button{
     padding: 10px;
     background: var(--yellow);
     border-radius: 5px;
@@ -58,6 +58,10 @@
     font-size: 2vh;
     border-radius: 2vw;
     border-color: var(--yellow);
+}
+
+.header-content button{
+    margin-left: 1vh;
 }
 
 .wave {
@@ -86,38 +90,62 @@
     display:flex; 
     flex-direction: column;
     align-items: center;
-    padding: 10%;
-    
+    /* padding: 10%; */
 }
 
-.description > .text > p{
+.description button{
+    align-self: center;
+}
+
+.text{
+    text-align: center;
     margin-left: 5%;
     font-size: 2rem;
     font-family: 'Zilla Slab',serif;
+    padding:5vw; 
 }
 
-.out{
-    margin-left: 20%;
-    margin-bottom: 0;
-    height: auto;
+.textTwo{
+    color:white;
+    text-align: center;
+    margin-left: 5%;
+    font-size: 1.2rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+h1{
+    color:white;
+    text-align: center;
+    font-size: 7vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+h2{
+    text-align: center;
+    font-size: 5vh;
     font-family: 'Zilla Slab',serif;
 }
 
-.num{
-    font-size: 10rem;
-}
-.small{
-    font-size: 2rem;
-}
+/* .row{
+    display:flex; 
+    flex-direction:row ;
+} */
 
-.statistic{
-    height:100%; 
-    width: 100%; 
-    background-image: url('/static/img/circle-bkg.svg');
-    background-repeat: no-repeat;
-    background-size: 50vw 50vw;
-    background-position-x: left;
-    background-position-y: center;
+.problem{
+    /* display: flex; */
+    background-color: #8DA97A;
+    flex-direction: column;
+    padding:5vw; 
 }
 
+.receipts{
+    
+    background-color: #060B05;
+    flex-direction: column;
+    padding:5vw; 
+}
 
+.rounded{
+    border-top: 8px solid ;
+    border-radius: 5px; 
+}
