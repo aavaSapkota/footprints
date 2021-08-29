@@ -268,7 +268,7 @@ body {
   border-radius: 10px;
 }
 .btn-green {
-  margin-left: 0.5rem;
+  margin-left: 0.2rem;
   background-color: var(--medium-green);
   color: white;
   transition:  background-color 0.2s ease-in-out;
