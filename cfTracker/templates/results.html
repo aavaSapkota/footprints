@@ -142,6 +142,7 @@ function hideModalIfEscKey(evt) {
 function hideModals() {
     $('.modal').hide();
     window.removeEventListener("click",hideModalIfClickOutside);
+    window.removeEventListener("touchend",hideModalIfClickOutside);
     window.removeEventListener("keyup",hideModalIfEscKey);
 }
 
@@ -165,6 +166,7 @@ function showModal(id) {
     // dirty
     setTimeout(() => {
         window.addEventListener("click",hideModalIfClickOutside);
+        window.addEventListener("touchend",hideModalIfClickOutside);
         window.addEventListener("keyup",hideModalIfEscKey);
     }, 200)
 }
